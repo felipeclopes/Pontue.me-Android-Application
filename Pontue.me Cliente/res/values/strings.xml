@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pontue.me</string>
+    <string name="menu_config">Configurações</string>
+    <string name="dialog_email">Qual o seu email?</string>
+    <string name="email_invalido">Ops... o email digitado não é valido.</string>
+    <string name="email_pref">email</string>
+
+</resources>

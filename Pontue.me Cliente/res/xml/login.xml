@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="login"
+        android:title="Login" >
+        <EditTextPreference
+            android:defaultValue=""
+            android:dialogMessage="Escolha um email para pontuar mais facilmente"
+            android:dialogTitle="Digite seu email"
+            android:key="email"
+            android:summary="Escolha um email para pontuar mais facilmente"
+            android:title="Email" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
