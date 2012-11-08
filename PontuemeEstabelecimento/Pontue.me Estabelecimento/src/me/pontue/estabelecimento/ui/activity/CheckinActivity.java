@@ -134,7 +134,6 @@ public class CheckinActivity extends Activity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View rowView = inflater.inflate(R.layout.checkin_item, parent, false);
 			LinearLayout llBeneficio = (LinearLayout) rowView.findViewById(R.id.llItemBeneficio);

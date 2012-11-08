@@ -6,7 +6,6 @@ import java.util.List;
 
 import me.pontue.estabelecimento.R;
 import me.pontue.estabelecimento.ui.activity.CheckinActivity;
-import me.pontue.estabelecimento.ui.activity.CouponActivity;
 import me.pontue.estabelecimento.ui.activity.EmailValidator;
 import me.pontue.estabelecimento.ui.activity.HomeActivity;
 import me.pontue.estabelecimento.ui.util.UIUtil;
@@ -29,16 +28,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus> {
 
-	// private final String URL_WS = "http://pontueme.webbyapp.com/api/v1/"; //OLD
+	// private final String URL_WS = "http://pontueme.webbyapp.com/api/v1/";
+	// //OLD
 	private final String URL_WS = "http://www.pontue.me/api/v1/"; // PROD
 	// private final String URL_WS = "http://192.168.1.9:3000/api/v1/"; // LOCAL
 	private WSRequestEnum actualTask;
@@ -130,10 +135,41 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 			i.putExtra(UiConstants.TOKEN, details.getToken());
 			ctx.startActivity(i);
 		} else if (actualTask == WSRequestEnum.coupons) {
-			Intent i = new Intent(ctx, CouponActivity.class);
-			i.putExtra(UiConstants.BENEFICIO_EXTRA, details.getBenefitSelected());
-			i.putExtra(UiConstants.TOKEN, details.getToken());
-			ctx.startActivity(i);
+			// Intent i = new Intent(ctx, CouponActivity.class);
+			// i.putExtra(UiConstants.BENEFICIO_EXTRA,
+			// details.getBenefitSelected());
+			// i.putExtra(UiConstants.TOKEN, details.getToken());
+			// ctx.startActivity(i);
+
+			showDialogBenefitCollected();
+		}
+	}
+
+	private void showDialogBenefitCollected() {
+		final Dialog dialog = new Dialog(ctx);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.resgate_dialog);
+		// dialog.setTitle("Parabéns!");
+		dialog.setCancelable(false);
+		WSPontuemeAsyncTask ws = WSFactory.getWSPontueMeInstance();
+		WSPontuemeDetails details = ws.getWSPontuemeDetails();
+		if (details != null) {
+			final String token = details.getToken();
+			TextView text = (TextView) dialog.findViewById(R.id.txtDialogResgateText);
+			text.setText(details.getBenefitSelectName());
+			Button cmdOk = (Button) dialog.findViewById(R.id.btnOk);
+			cmdOk.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					dialog.dismiss();
+					Intent i = new Intent(ctx, HomeActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					i.putExtra(UiConstants.TOKEN, token);
+					ctx.startActivity(i);
+				}
+			});
+			dialog.show();
 		}
 	}
 
@@ -187,8 +223,9 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//			nameValuePairs.add(new BasicNameValuePair("email", email)); // versa nova
-			nameValuePairs.add(new BasicNameValuePair("name", email));
+			nameValuePairs.add(new BasicNameValuePair("email", email)); // versa
+																		// nova
+			// nameValuePairs.add(new BasicNameValuePair("name", email));
 			nameValuePairs.add(new BasicNameValuePair("password", password));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -247,7 +284,7 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 				resposeStatus.setStatus(StatusEnum.Ok);
 			} catch (JSONException e) {
 				resposeStatus.addException(e);
-				resposeStatus.addMessage(ctx.getString(R.string.erro_login));
+				resposeStatus.addMessage(ctx.getString(R.string.erro_checkin));
 				resposeStatus.setStatus(StatusEnum.Warning);
 			}
 		} catch (ClientProtocolException e) {
@@ -260,14 +297,20 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 		return resposeStatus;
 	}
 
-	private ResponseStatus getCupom(String mail, String benefitId) {
+	private ResponseStatus getCupom(String codigoLido, String benefitId) {
 		ResponseStatus resposeStatus = new ResponseStatus();
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost(URL_WS + "coupons.json?auth_token=" + details.getToken());
 
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			nameValuePairs.add(new BasicNameValuePair("email", mail));
+			EmailValidator ev = new EmailValidator();
+			if (ev.validate(codigoLido)) {
+				nameValuePairs.add(new BasicNameValuePair("email", codigoLido));
+			} else {
+				nameValuePairs.add(new BasicNameValuePair("code", codigoLido));
+			}
+			// nameValuePairs.add(new BasicNameValuePair("email", mail)); old
 			nameValuePairs.add(new BasicNameValuePair("benefit_id", benefitId));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 

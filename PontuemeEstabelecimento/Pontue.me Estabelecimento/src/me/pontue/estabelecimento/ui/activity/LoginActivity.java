@@ -28,7 +28,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private AsyncTask<String, Long, ResponseStatus> task;
 
 	/*
-	 * private static final String SENHA = "123"; private static final String LOGIN = "Mc Donalds";
+	 * private static final String SENHA = "123"; private static final String
+	 * LOGIN = "Mc Donalds";
 	 */
 
 	@Override
@@ -36,7 +37,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.login);
 		user = (EditText) findViewById(R.id.editTxtLoginUser);
@@ -48,11 +50,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 		txtErro.setText("");
 
 		// hide keyboard
-		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(user.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
-		imm.hideSoftInputFromWindow(password.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+		imm.hideSoftInputFromWindow(user.getWindowToken(),
+				InputMethodManager.HIDE_IMPLICIT_ONLY);
+		imm.hideSoftInputFromWindow(password.getWindowToken(),
+				InputMethodManager.HIDE_IMPLICIT_ONLY);
 
 	}
 
@@ -68,9 +73,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 			String userTyped = user.getText().toString();
 			String passwordTyped = password.getText().toString();
 			if ("".equals(userTyped) && "".equals(passwordTyped)) {
-				// userTyped = "mcdonalds@gmail.com"; // new
-				userTyped = "Mc Donalds"; // old
-				passwordTyped = "123";
+				userTyped = "cadastro@pontue.me"; // new
+				passwordTyped = "p0ntu3m3";
+
+				// userTyped = "Mc Donalds"; // old
+				// passwordTyped = "123";
+
+				// userTyped = "cadastro@pontue.me";
+				// passwordTyped = "p0ntu3m3";
 			}
 
 			ws.setEmailPassword(userTyped, passwordTyped);

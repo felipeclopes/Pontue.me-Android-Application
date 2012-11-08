@@ -6,6 +6,7 @@ import me.pontue.estabelecimento.ws.WSFactory;
 import me.pontue.estabelecimento.ws.WSPontuemeAsyncTask;
 import me.pontue.estabelecimento.ws.WSPontuemeDetails;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CouponActivity extends Activity implements OnClickListener {
@@ -23,13 +25,13 @@ public class CouponActivity extends Activity implements OnClickListener {
 	private Button btnOk;
 	private String token;
 
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// full screen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.cupom);
 		txtMsg = (TextView) findViewById(R.id.txtCupomMsg);
@@ -47,7 +49,8 @@ public class CouponActivity extends Activity implements OnClickListener {
 			throw new RuntimeException(getString(R.string.erro_coupom_receber));
 		}
 
-		txtRecompensa.setText(getString(R.string.cupom_comeco) + details.getBenefitSelectName());
+		txtRecompensa.setText(getString(R.string.cupom_comeco)
+				+ details.getBenefitSelectName());
 		btnOk.setOnClickListener(this);
 	}
 

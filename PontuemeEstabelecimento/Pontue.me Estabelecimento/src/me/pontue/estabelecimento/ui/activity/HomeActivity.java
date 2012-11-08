@@ -52,7 +52,11 @@ public class HomeActivity extends Activity implements OnClickListener {
 			token = extras.getString(UiConstants.TOKEN);
 		}
 		if (token == null) {
-			throw new RuntimeException(getString(R.string.erro_token));
+			Intent i = new Intent(this, LoginActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			this.startActivity(i);
+			Toast.makeText(this, "Seu login expirou! Favor fazer login novamente!", Toast.LENGTH_LONG).show();
+			finish();
 		}
 
 		btnQR = (ImageView) findViewById(R.id.imageQR);

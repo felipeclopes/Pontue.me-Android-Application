@@ -134,5 +134,6 @@
     <string name="wifi_type_label">Type</string>
     <string name="zxing_url">http://code.google.com/p/zxing</string>
     <string name="erro_home_email_nao_digitado">Você precisa digitar um email para pontuar!</string>
+    <string name="keyboard_ok">Pontue!</string>
 
 </resources>
