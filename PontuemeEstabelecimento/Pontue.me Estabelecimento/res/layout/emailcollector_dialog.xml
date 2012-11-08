@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="750dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="50dp"
+    android:paddingLeft="70dp"
+    android:paddingRight="70dp"
+    android:paddingTop="50dp" >
+
+    <LinearLayout
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtDialogResgateTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Digite seu endereço de email abaixo para pontuar"
+            android:textColor="@color/beneficio_txt_titulo_pode"
+            android:textSize="26dp" />
+
+        <EditText
+            android:id="@+id/edittxtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="60sp"
+            android:background="@drawable/textfield_default"
+            android:hint="Email"
+            android:imeActionLabel="@string/keyboard_ok"
+            android:imeOptions="actionGo"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textColor="@color/editText_TextColor"
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/txtEmailOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="55sp"
+            android:layout_marginRight="50sp"
+            android:layout_marginTop="20sp"
+            android:background="#5096B4"
+            android:gravity="right"
+            android:paddingBottom="10dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="10dp"
+            android:text="Pontue me!"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -129,6 +129,7 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 			i.putExtra(UiConstants.PONTOS_EXTRA, details.getPoints());
 			i.putExtra(UiConstants.BENEFICIOS_EXTRA, details.getBeneficios());
 			i.putExtra(UiConstants.TOKEN, details.getToken());
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			ctx.startActivity(i);
 		} else if (actualTask == WSRequestEnum.login) {
 			Intent i = new Intent(ctx, HomeActivity.class);
