@@ -34,7 +34,8 @@
 
     <application
         android:icon="@drawable/icone"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light" >
         <activity
             android:name="me.pontue.estabelecimento.ui.activity.LoginActivity"
             android:label="@string/app_name"
@@ -66,8 +67,7 @@
         <activity
             android:name="com.google.zxing.client.android.PreferencesActivity"
             android:label="@string/preferences_name"
-            android:stateNotNeeded="true" >
-        </activity>
+            android:stateNotNeeded="true" />
         <activity
             android:name="com.google.zxing.client.android.encode.EncodeActivity"
             android:label="@string/share_name"

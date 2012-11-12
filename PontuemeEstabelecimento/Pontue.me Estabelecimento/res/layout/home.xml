@@ -198,13 +198,13 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="25"
                             android:background="@drawable/linhabranca" />
-
+
                         <TextView
                             android:layout_width="0sp"
                             android:layout_height="wrap_content"
                             android:layout_weight="25"
                             android:gravity="center"
-                            android:text="ou Email"
+                            android:text="ou"
                             android:textColor="#667667"
                             android:textSize="30dp" />
 
@@ -214,16 +214,24 @@
                             android:layout_weight="25"
                             android:background="@drawable/linhabranca" />
                     </LinearLayout>
-
-                    <ImageView
+
+                    <Button
                         android:id="@+id/imgHomeEmail"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="50sp"
                         android:layout_marginRight="50sp"
-                        android:layout_marginTop="10sp"
-                        android:src="@drawable/mail" />
+                        android:layout_marginTop="100sp"
+                        android:background="@color/beneficio_background_impar"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="10dp"
+                        android:text="Digite seu email"
+                        android:textColor="@android:color/white"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView3"

@@ -58,12 +58,11 @@ public final class R {
         public static final int icone=0x7f020009;
         public static final int launcher_icon=0x7f02000a;
         public static final int linhabranca=0x7f02000b;
-        public static final int mail=0x7f02000c;
-        public static final int meiafoca=0x7f02000d;
-        public static final int qrcode=0x7f02000e;
-        public static final int share_via_barcode=0x7f02000f;
-        public static final int shopper_icon=0x7f020010;
-        public static final int textfield_default=0x7f020011;
+        public static final int meiafoca=0x7f02000c;
+        public static final int qrcode=0x7f02000d;
+        public static final int share_via_barcode=0x7f02000e;
+        public static final int shopper_icon=0x7f02000f;
+        public static final int textfield_default=0x7f020010;
     }
     public static final class id {
         public static final int FichasCheckListRoot=0x7f08004f;

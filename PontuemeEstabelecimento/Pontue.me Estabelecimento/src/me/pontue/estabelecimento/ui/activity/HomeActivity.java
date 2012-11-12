@@ -5,11 +5,9 @@ import me.pontue.estabelecimento.ui.util.UiConstants;
 import me.pontue.estabelecimento.ws.ResponseStatus;
 import me.pontue.estabelecimento.ws.WSFactory;
 import me.pontue.estabelecimento.ws.WSPontuemeAsyncTask;
-import me.pontue.estabelecimento.ws.WSPontuemeDetails;
 import me.pontue.estabelecimento.ws.util.WSRequestEnum;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,7 +29,7 @@ import com.google.zxing.client.android.CaptureActivity;
 public class HomeActivity extends Activity implements OnClickListener {
 
 	private ImageView btnQR;
-	private ImageView imgEmail;
+	private Button imgEmail;
 	// private EditText editTxtEmail;
 	// private TextView txtEmail;
 	private int READ_CODE = 1;
@@ -67,7 +64,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 		btnQR = (ImageView) findViewById(R.id.imageQR);
 		// editTxtEmail = (EditText) findViewById(R.id.edittxtEmail);
 		// txtEmail = (TextView) findViewById(R.id.txtEmail);
-		imgEmail = (ImageView) findViewById(R.id.imgHomeEmail);
+		imgEmail = (Button) findViewById(R.id.imgHomeEmail);
 
 		btnQR.setOnClickListener(this);
 		imgEmail.setOnClickListener(this);
