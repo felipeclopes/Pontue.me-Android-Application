@@ -28,7 +28,9 @@
     <color name="transparent">#00000000</color>
     <color name="viewfinder_frame">#ff000000</color>
     <color name="viewfinder_laser">#ffff0000</color>
-    <color name="viewfinder_mask">#60000000</color>
+<!--    <color name="viewfinder_mask">#60000000</color>-->
+    <color name="viewfinder_mask">#ffffffff</color>
+    
     <color name="app_background_azul">#C8DEE8</color>
     <color name="editText_TextColor">#5096B4</color>
 

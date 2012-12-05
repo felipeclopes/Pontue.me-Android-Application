@@ -47,7 +47,6 @@ public class CheckinActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		// FIXME: TESTAR!!
 		SoundPool soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
 		soundPool.setOnLoadCompleteListener(new OnLoadCompleteListener() {
 			@Override
