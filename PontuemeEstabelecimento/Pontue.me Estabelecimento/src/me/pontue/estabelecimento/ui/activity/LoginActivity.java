@@ -1,5 +1,7 @@
 package me.pontue.estabelecimento.ui.activity;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import me.pontue.estabelecimento.R;
 import me.pontue.estabelecimento.ws.ResponseStatus;
 import me.pontue.estabelecimento.ws.WSFactory;
@@ -58,7 +60,19 @@ public class LoginActivity extends Activity implements OnClickListener {
 				InputMethodManager.HIDE_IMPLICIT_ONLY);
 		imm.hideSoftInputFromWindow(password.getWindowToken(),
 				InputMethodManager.HIDE_IMPLICIT_ONLY);
-
+		
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	@Override

@@ -11,9 +11,22 @@ public class WSPontuemeDetails implements Serializable {
 	private String token;
 	private ArrayList<Beneficio> beneficios;
 	private long points;
+	private String emailCode;
 	private String email, password;
 	private Long benefitSelected;
 	private String benefitSelectName;
+
+	public String getEmailCode() {
+		return emailCode;
+	}
+
+	public void setEmailCode(String emailCode) {
+		this.emailCode = emailCode;
+	}
+
+	public void setBenefitSelectName(String benefitSelectName) {
+		this.benefitSelectName = benefitSelectName;
+	}
 
 	public String getBenefitSelectName() {
 		return benefitSelectName;

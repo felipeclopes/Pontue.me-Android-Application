@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.zxing.client.android.CaptureActivity;
 
 public class HomeActivity extends Activity implements OnClickListener {
@@ -72,26 +73,18 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 		// hide keyboard
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
 
-		// InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		// imm.hideSoftInputFromWindow(editTxtEmail.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
-
-		// editTxtEmail.setOnEditorActionListener(new OnEditorActionListener() {
-		// @Override
-		// public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		// if (actionId == EditorInfo.IME_ACTION_GO) {
-		// String emailA = editTxtEmail.getText().toString();
-		// EmailValidator ev = new EmailValidator();
-		// if (ev.validate(emailA)) {
-		// callCheckin(emailA);
-		// return true;
-		// } else {
-		// Toast.makeText(HomeActivity.this, "Ops... email inválido :(", Toast.LENGTH_SHORT).show();
-		// }
-		// }
-		// return false;
-		// }
-		// });
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	@Override

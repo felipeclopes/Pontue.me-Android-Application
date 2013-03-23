@@ -1,5 +1,7 @@
 package me.pontue.estabelecimento.ui.activity;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import me.pontue.estabelecimento.R;
 import me.pontue.estabelecimento.ui.util.UiConstants;
 import me.pontue.estabelecimento.ws.WSFactory;
@@ -30,8 +32,7 @@ public class CouponActivity extends Activity implements OnClickListener {
 
 		// full screen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.cupom);
 		txtMsg = (TextView) findViewById(R.id.txtCupomMsg);
@@ -49,9 +50,20 @@ public class CouponActivity extends Activity implements OnClickListener {
 			throw new RuntimeException(getString(R.string.erro_coupom_receber));
 		}
 
-		txtRecompensa.setText(getString(R.string.cupom_comeco)
-				+ details.getBenefitSelectName());
+		txtRecompensa.setText(getString(R.string.cupom_comeco) + details.getBenefitSelectName());
 		btnOk.setOnClickListener(this);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	@Override

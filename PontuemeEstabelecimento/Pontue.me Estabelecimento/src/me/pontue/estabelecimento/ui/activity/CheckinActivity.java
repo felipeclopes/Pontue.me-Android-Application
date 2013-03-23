@@ -2,6 +2,8 @@ package me.pontue.estabelecimento.ui.activity;
 
 import java.util.ArrayList;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import me.pontue.estabelecimento.R;
 import me.pontue.estabelecimento.ui.util.UiConstants;
 import me.pontue.estabelecimento.ws.ResponseStatus;
@@ -94,6 +96,18 @@ public class CheckinActivity extends Activity {
 
 		BeneficiosAdapter adapt = new BeneficiosAdapter(this, bensArray);
 		lv.setAdapter(adapt);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 
 	public class BeneficiosAdapter extends ArrayAdapter<Beneficio> implements OnClickListener {

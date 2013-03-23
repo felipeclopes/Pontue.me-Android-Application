@@ -40,6 +40,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Tracker;
+
 public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus> {
 
 	// private final String URL_WS = "http://pontueme.webbyapp.com/api/v1/";
@@ -125,7 +128,7 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 
 		if (actualTask == WSRequestEnum.checkin) {
 			Intent i = new Intent(ctx, CheckinActivity.class);
-			i.putExtra(UiConstants.EXTRA_EMAIL, details.getEmail());
+			i.putExtra(UiConstants.EXTRA_EMAIL, details.getEmailCode());
 			i.putExtra(UiConstants.PONTOS_EXTRA, details.getPoints());
 			i.putExtra(UiConstants.BENEFICIOS_EXTRA, details.getBeneficios());
 			i.putExtra(UiConstants.TOKEN, details.getToken());
@@ -197,8 +200,9 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 			if (actualTask.equals(WSRequestEnum.login)) {
 				return doLogin(details.getEmail(), details.getPassword());
 			} else if (actualTask.equals(WSRequestEnum.checkin)) {
-				details.setEmail(params[1]);
-				return doCheckin(details.getEmail());
+//				details.setEmail(params[1]);
+				details.setEmailCode(params[1]);
+				return doCheckin(params[1]);
 			} else if (actualTask.equals(WSRequestEnum.coupons)) {
 				details.setBenefitSelected(Long.valueOf(params[2]));
 				return getCupom(params[1], params[2]);
@@ -283,6 +287,12 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 					details.addBeneficio(ben);
 				}
 				resposeStatus.setStatus(StatusEnum.Ok);
+
+				// analytics
+				Tracker tracker = EasyTracker.getTracker();
+				tracker.setCustomDimension(1, details.getEmail());
+				tracker.setCustomMetric(1, 1L);
+				tracker.trackView();
 			} catch (JSONException e) {
 				resposeStatus.addException(e);
 				resposeStatus.addMessage(ctx.getString(R.string.erro_checkin));
@@ -323,6 +333,11 @@ public class WSPontuemeAsyncTask extends AsyncTask<String, Long, ResponseStatus>
 				boolean b = jsonObj.getBoolean("result");
 				if (b) {
 					resposeStatus.setStatus(StatusEnum.Ok);
+					// analytics
+					Tracker tracker = EasyTracker.getTracker();
+					tracker.setCustomDimension(1, details.getEmail());
+					tracker.setCustomMetric(2, Long.parseLong(benefitId));
+					tracker.trackView();
 				} else {
 					resposeStatus.setStatus(StatusEnum.Warning);
 					resposeStatus.addMessage(ctx.getString(R.string.erro_cupom));
