@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp" >
+
+    <LinearLayout
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100" >
+
+        <ImageView
+            android:id="@+id/alertIcon"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="10sp"
+            android:layout_weight="25"
+            android:src="@drawable/ic_alert_question" />
+
+        <TextView
+            android:id="@+id/alertText"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:maxLines="5"
+            android:singleLine="false"
+            android:text="#text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right" >
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:text="OK" />
+    </LinearLayout>
+
+</LinearLayout>
